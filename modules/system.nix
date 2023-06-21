@@ -63,6 +63,7 @@
     neovim
     wget
     curl
+    iptables
     git
     sysstat
     hyfetch
@@ -92,8 +93,14 @@
       settings = {
         PermitRootLogin = "no";
 	PasswordAuthentication = false;
+	LogLevel = "VERBOSE";
       };
       openFirewall = true;
+    };
+
+    # Enable the Fail2Ban service
+    fail2ban = {
+      enable = true;
     };
   };
 }

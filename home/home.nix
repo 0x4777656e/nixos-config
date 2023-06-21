@@ -1,3 +1,4 @@
+# This file is currently unused. Home manager will be implemented in the future.
 { config, pkgs, ... }:
 
 {

@@ -11,6 +11,9 @@
       ../../modules/system.nix
       ../../modules/plasma.nix
       #../../modules/nvidia.nix
+
+      # Arion
+      ../../modules/arion.nix
     ];
 
   # Bootloader.
@@ -24,7 +27,7 @@
   users.users.flint = {
     isNormalUser = true;
     description = "Gwen";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "podman" ];
     packages = with pkgs; [
       firefox
       kate

@@ -49,7 +49,7 @@
 #           home-manager.useGlobalPkgs = true;
 #	    home-manager.useUserPackages = true;
 #           home-manager.extraSpecialArgs = inputs;
-#	    home-manager.users.flint = import ./home.nix;
+#	    home-manager.users.star = import ./home.nix;
 #	  }
 	];
       };
@@ -69,6 +69,14 @@
 #	  }
 
         ];
+      };
+
+      nixos-test = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+
+	modules = [
+	  ./hosts/nixos-test
+	];
       };
     };
   };

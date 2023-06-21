@@ -9,12 +9,14 @@
 
       # System defaults
       ../../modules/system.nix
+      ../../modules/plasma.nix
 
       # Docker+Arion base
       ../../modules/arion.nix
       # Docker applications
-      ../../modules/docker/swag.nix
-      ../../modules/docker/minecraft.nix
+      #../../modules/docker/swag.nix
+      #../../modules/docker/duckdns.nix
+      #../../modules/docker/minecraft.nix
     ];
 
   # Bootloader.
@@ -25,10 +27,14 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.star = {
+  users.users.flint = {
     isNormalUser = true;
-    description = "Just one of many";
-    extraGroups = [ "networkmanager" "wheel" "podman" ];
+    description = "Gwen";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "podman" 
+    ];
     packages = with pkgs; [
     #  firefox
     #  kate
