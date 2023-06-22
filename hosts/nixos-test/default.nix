@@ -42,10 +42,13 @@
       }
     ];
     packages = with pkgs; [
-      # for podman
+      # podman
       slirp4netns
       redir
       
+      # UPS management
+      nut
+
       # other stuff
       firefox
       kate
