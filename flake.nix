@@ -76,6 +76,14 @@
 
 	modules = [
 	  ./hosts/nixos-test
+
+	  # add home-manager as a module
+	  #home-manager.nixosModules.home-manager {
+	  #  home-manager.useGlobalPkgs = true;
+	  #  home-manager.useUserPackages = true;
+	  #  home-manager.extraSpecialArgs = inputs;
+	  #  home-manager.users.flint = import ./home.nix;
+	  #};
 	];
       };
     };

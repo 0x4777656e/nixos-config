@@ -11,9 +11,6 @@
       ../../modules/system.nix
       ../../modules/plasma.nix
       #../../modules/nvidia.nix
-
-      # Arion
-      ../../modules/arion.nix
     ];
 
   # Bootloader.
@@ -27,8 +24,29 @@
   users.users.flint = {
     isNormalUser = true;
     description = "Gwen";
-    extraGroups = [ "networkmanager" "wheel" "podman" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "podman" 
+    ];
+    subUidRanges = [ 
+      {
+        count = 65535;
+	startUid = 131072;
+      }
+    ];
+    subGidRanges = [ 
+      {
+        count = 65535;
+	startGid = 131072;
+      }
+    ];
     packages = with pkgs; [
+      # for podman
+      slirp4netns
+      redir
+      
+      # other stuff
       firefox
       kate
     #  thunderbird
@@ -64,6 +82,10 @@
     #proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   };
 
+  virtualisation.podman = {
+    enable = true;
+    autoPrune.enable = true;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
