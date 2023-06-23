@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, nixpkgs, ... }:
 
 {
   home.username = "flint";
@@ -95,6 +95,7 @@
     usbutils
 
     # TODO remove temp
+    discord
     atlauncher
   ];
 
@@ -103,6 +104,7 @@
     enableCompletion = true;
     bashrcExtra = ''
       export PATH="/home/flint/.local/bin:"$PATH
+      export EDITOR=nvim
 
       # if not running interactively, skip
       [[ $- != *i* ]] && return
