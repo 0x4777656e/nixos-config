@@ -19,19 +19,24 @@
 
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs = {
+      url = "github:NixOS/nixpkgs/nixos-unstable";
+      #config.allowUnfreePredicate = (pkg: true); # wacky workaround
+    };
+    #nur.url = "github:nix-community/NUR";
     
-#    home-manager = {
-#      url = "github:nix-community/home-manager";
-#      inputs.nixpkgs.follows = "nixpkgs";
-#    };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
 
   outputs = inputs@{
     self,
     nixpkgs,
-#    home-manager,
+    #nur,
+    home-manager,
     ... 
   }: {
     nixosConfigurations = {
@@ -60,6 +65,8 @@
         modules = [
 	  ./hosts/steel
 
+	  #nur.modules.nur
+
 	  # add home-manager as a module
 #	  home-manager.nixosModules.home-manager {
 #           home-manager.useGlobalPkgs = true;
@@ -74,16 +81,20 @@
       nixos-test = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
+	specialArgs = inputs;
+
 	modules = [
 	  ./hosts/nixos-test
 
+	  #nur.nixosModules.nur
+
 	  # add home-manager as a module
-	  #home-manager.nixosModules.home-manager {
-	  #  home-manager.useGlobalPkgs = true;
-	  #  home-manager.useUserPackages = true;
-	  #  home-manager.extraSpecialArgs = inputs;
-	  #  home-manager.users.flint = import ./home.nix;
-	  #};
+	  home-manager.nixosModules.home-manager {
+	    home-manager.useGlobalPkgs = true;
+	    home-manager.useUserPackages = true;
+	    home-manager.extraSpecialArgs = inputs;
+	    home-manager.users.flint = import ./home/flint.nix;
+	  }
 	];
       };
     };

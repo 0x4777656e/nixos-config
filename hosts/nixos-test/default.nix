@@ -12,6 +12,8 @@
       ../../modules/plasma.nix
       #../../modules/nvidia.nix
     ];
+  
+  nixpkgs.config.allowUnfreePredicate = (pkg: true); # wacky workaround
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -19,6 +21,16 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
+
+  # System-wide packages
+  environment.systemPackages = with pkgs; [
+    # Podman stuff
+    slirp4netns
+    redir
+
+    # UPS tools
+    nut
+  ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.flint = {
@@ -42,17 +54,7 @@
       }
     ];
     packages = with pkgs; [
-      # podman
-      slirp4netns
-      redir
-      
-      # UPS management
-      nut
-
-      # other stuff
       firefox
-      kate
-    #  thunderbird
     ];
     openssh.authorizedKeys.keys = [
       # TODO put a key here
