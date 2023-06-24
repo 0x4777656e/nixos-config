@@ -9,15 +9,9 @@
 
       # System defaults
       ../../modules/system.nix
-      ../../modules/plasma.nix
-
-      # Docker+Arion base
-      ../../modules/arion.nix
-      # Docker applications
-      #../../modules/docker/swag.nix
-      #../../modules/docker/duckdns.nix
-      #../../modules/docker/minecraft.nix
     ];
+  
+  nixpkgs.config.allowUnfreePredicate = (pkg: true); # wacky workaround
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -26,22 +20,41 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # System-wide packages
+  environment.systemPackages = with pkgs; [
+    # Podman stuff
+    slirp4netns
+    redir
+
+    # UPS tools
+    nut
+  ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.flint = {
+  users.users.dark = {
     isNormalUser = true;
-    description = "Gwen";
+    description = "dark";
     extraGroups = [
       "networkmanager"
       "wheel"
       "podman" 
     ];
+    subUidRanges = [ 
+      {
+        count = 65535;
+	startUid = 131072;
+      }
+    ];
+    subGidRanges = [ 
+      {
+        count = 65535;
+	startGid = 131072;
+      }
+    ];
     packages = with pkgs; [
-    #  firefox
-    #  kate
-    #  thunderbird
     ];
     openssh.authorizedKeys.keys = [
-      # TODO put a key here
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDq5AlWizFRK6H4QsTdaVNehWmjbJDdNYFHl2WFJg94Btn1WLIGr8QnQfQ9B6xrN+1k/2WKwqEZBGZkDdnjNLzb+ab0WrhNCb0va2VnXfL+TAat9+Z0pIfkNAiZK4Exx0foUSMDzAl0yoxFT/1gltuHZgt0uo/WGipmgGdJt4G5t9FodoD49TO7YcWniukroK2IoU47ZVRk67aqS0n8y0o1/x+tPdJsVBvJdRhm4aD5IjMZthhHU4XTI+1WF9etQ7DhBwuIfakJfuuRR5z38NBp2506xudXGRZfE1ySACdhDab/K7s5uAgOoWm/0u213jV4veE5RO/C9rtwRWNe90+KOEb+Y9JoYa+nc6X83jx16AaX+xL3n6ZqJIq+s80H8XTKSlIpEWAGc4S9+2hvpfRxSQCLVHyFY0wkjlTxCvlXT2G1jt2Jtl2ZJCMyAjMXsRMCpg+tfHZsSuiudZ4/3+GBEvaI9tB6pqZZcu0EH9wE+VWhHCfVmfFXvg8v/CCKfg8= flint@steel"
     ];
   };
 
@@ -55,22 +68,30 @@
 
 
   networking = {
-    hostName = "night"; # Define your hostname.
-    networkmanager.enable = true;
+    hostName = "steel"; # Define your hostname.
+    networkmanager.enable = true; # Enables internet via networkManager. Mutually exclusive with wireless
     #wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     #defaultGateway = "x.x.x.x"; # Sets default gateway
 
     # Open ports in the firewall.
+    firewall.enable = true;
     #firewall.allowedTCPPorts = [ ... ];
     #firewall.allowedUDPPorts = [ ... ];
-    # Or disable the firewall altogether.
-    #firewall.enable = false;
+    firewall.extraCommands = ''
+      iptables -A INPUT -p tcp --dport 25565 -j ACCEPT
+      iptables -A INPUT -p tcp -s localhost --dport 25575 -j ACCEPT
+      iptables -A INPUT -p tcp --dport 25575 -j DROP
+    '';
 
     # Configure network proxy if necessary
     #proxy.default = "http://user:password@proxy:port/";
     #proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   };
 
+  virtualisation.podman = {
+    enable = true;
+    autoPrune.enable = true;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -1,8 +1,8 @@
 { config, pkgs, nixpkgs, ... }:
 
 {
-  home.username = "flint";
-  home.homeDirectory = "/home/flint";
+  home.username = "dark";
+  home.homeDirectory = "/home/dark";
   
   imports = [
   ];
@@ -96,9 +96,6 @@
     ethtool
     pciutils
     usbutils
-
-    # TODO remove later
-    atlauncher
   ];
 
   programs.bash = {

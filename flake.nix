@@ -44,18 +44,18 @@
         system = "x86_64-linux";
 
 	# allow use of inputs in submodules
-#	specialArgs = inputs;
+	specialArgs = inputs;
 
 	modules = [
 	  ./hosts/night
 
 	  # add home-manager as a module
-#	  home-manager.nixosModules.home-manager {
-#           home-manager.useGlobalPkgs = true;
-#	    home-manager.useUserPackages = true;
-#           home-manager.extraSpecialArgs = inputs;
-#	    home-manager.users.star = import ./home.nix;
-#	  }
+	  home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = inputs;
+            home-manager.users.dark = import ./home/dark.nix;
+	  }
 	];
       };
 
