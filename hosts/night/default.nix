@@ -68,7 +68,7 @@
 
 
   networking = {
-    hostName = "steel"; # Define your hostname.
+    hostName = "night"; # Define your hostname.
     networkmanager.enable = true; # Enables internet via networkManager. Mutually exclusive with wireless
     #wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     #defaultGateway = "x.x.x.x"; # Sets default gateway
