@@ -97,7 +97,7 @@
     pciutils
     usbutils
 
-    # TODO remove later
+    
     atlauncher
   ];
 
@@ -130,7 +130,7 @@
       esac
 
       if [ "$color_prompt" = yes ]; then
-          PS1='[\[\033[00;36m\]\u@\h\[\033[00m\]] \[\033[01;30m\]\w\[\033[00m\] \$ '
+          PS1='[\[\033[00;38;5;36m\]\u@\h\[\033[00m\]] \[\033[01;30m\]\w\[\033[00m\] \$ '
       else
           PS1='[\u@\h \W] \$'
       fi
@@ -139,6 +139,42 @@
 
     shellAliases = {
       # colors
+      colorgrid = #''
+	#function colorgrid()
+	#{
+	''
+	    iter=16
+	    while [ $iter -lt 52 ]
+	    do
+	        second=$[$iter+36]
+		third=$[$second+36]
+		fourth=$[$third+36]
+		fifth=$[$fourth+36]
+		sixth=$[$fifth+36]
+		seventh=$[$sixth+36]
+		if [ $seventh -gt 250 ];then seven=$[$seven-251]; fi
+
+		echo -en "\033[38;5;$(echo $iter)m"
+		printf "%03d" $iter
+	        echo -en "   \033[38;5;$(echo $second)m"
+		printf "%03d" $iter
+		echo -en "   \033[38;5;$(echo $third)m"
+		printf "%03d" $iter
+		echo -en "   \033[38;5;$(echo $fourth)m"
+		printf "%03d" $iter
+		echo -en "   \033[38;5;$(echo $fifth)m"
+		printf "%03d" $iter
+		echo -en "   \033[38;5;$(echo $sixth)m"
+		printf "%03d" $iter
+                echo -en "   \033[38;5;$(echo $seventh)m"
+		printf "%03d" $iter
+
+		iter=$[$iter+1]
+		printf '\r\n'
+	    done
+      '';
+	#}
+      #'';
       ls = "ls --color=auto";
       grep = "grep --color=auto";
       

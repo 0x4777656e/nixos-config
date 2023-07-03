@@ -71,7 +71,11 @@
     hostName = "night"; # Define your hostname.
     networkmanager.enable = true; # Enables internet via networkManager. Mutually exclusive with wireless
     #wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-    #defaultGateway = "x.x.x.x"; # Sets default gateway
+    defaultGateway = "192.168.1.1"; # Sets default gateway
+    interfaces.eth0.ipv4.addresses = [ {
+      address = "192.168.1.2";
+      prefixLength = 24;
+    } ];
 
     # Open ports in the firewall.
     firewall.enable = true;

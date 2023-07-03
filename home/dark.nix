@@ -102,7 +102,7 @@
     enable = true;
     enableCompletion = true;
     bashrcExtra = ''
-      export PATH="/home/flint/.local/bin:"$PATH
+      export PATH="/home/dark/.local/bin:"$PATH
       export EDITOR=nvim
 
       # if not running interactively, skip
@@ -127,7 +127,7 @@
       esac
 
       if [ "$color_prompt" = yes ]; then
-          PS1='[\[\033[00;36m\]\u@\h\[\033[00m\]] \[\033[01;30m\]\w\[\033[00m\] \$ '
+          PS1='[\[\033[01;38;5;134m\]\u@\h\[\033[00m\]] \[\033[01;30m\]\w\[\033[00m\] \$ '
       else
           PS1='[\u@\h \W] \$'
       fi
@@ -148,7 +148,6 @@
 
       # nix
       nix-sys = "nix-env --profile /nix/var/nix/profiles/system";
-      nix-rebuild-test = "nixos-rebuild --flake .#nixos-test --install-bootloader switch";
 
       # python
       py = "python3";
