@@ -108,6 +108,11 @@
       # if not running interactively, skip
       [[ $- != *i* ]] && return
 
+      # if logged in via ssh, allow processes to continue when the connection is closed
+      if [[ -n $SSH_CONNECTION ]] ; then
+          loginctl enable-linger
+      fi
+
       # append to history file instead of overwriting
       shopt -s histappend
 
