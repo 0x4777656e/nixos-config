@@ -72,6 +72,7 @@
     networkmanager.enable = true; # Enables internet via networkManager. Mutually exclusive with wireless
     #wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     defaultGateway = "192.168.1.1"; # Sets default gateway
+    nameservers = [ "8.8.8.8" ];
     interfaces.eth0.ipv4.addresses = [ {
       address = "192.168.1.2";
       prefixLength = 24;
