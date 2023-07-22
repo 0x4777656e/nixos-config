@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  # Enable nix-command and flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # Set your time zone
   time.timeZone = "America/Los_Angeles";
 
