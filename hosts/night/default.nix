@@ -74,7 +74,7 @@
     #wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     #useDHCP = true;
     #dhcpcd.enable = false;
-    #defaultGateway = "x.x.x.x"; # Sets default gateway
+    defaultGateway = "192.168.0.1"; # Sets default gateway
     nameservers = [ "8.8.8.8" ];
     #interfaces.enp4s0.useDHCP = true;
     interfaces.enp4s0.ipv4.addresses = [ {
