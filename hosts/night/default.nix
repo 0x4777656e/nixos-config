@@ -70,7 +70,10 @@
   networking = {
     hostName = "night"; # Define your hostname.
     networkmanager.enable = true; # Enables internet via networkManager. Mutually exclusive with wpa_supplicant
+    networkmanager.dhcp = "internal"
     #wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    useDHCP = true
+    dhcpcd.enable = false
     #defaultGateway = "192.168.1.1"; # Sets default gateway
     nameservers = [ "8.8.8.8" ];
     #interfaces.eth0.ipv4.addresses = [ {
