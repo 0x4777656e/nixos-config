@@ -18,14 +18,14 @@
       fsType = "ext4";
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/AB88-C352";
-      fsType = "vfat";
-    };
-
   fileSystems."/home" =
     { device = "/dev/disk/by-uuid/f25434f3-4e7d-4f9b-8dc4-49507682c5ed";
       fsType = "ext4";
+    };
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/AB88-C352";
+      fsType = "vfat";
     };
 
   fileSystems."/mnt/bak" =
@@ -33,7 +33,7 @@
       fsType = "ext4";
     };
 
-  fileSystems."/mnt/media" =
+  fileSystems."/mnt/data" =
     { device = "/dev/disk/by-uuid/27d98422-78a5-4188-b3b2-3487b6387faf";
       fsType = "ext4";
     };
