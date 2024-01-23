@@ -23,6 +23,7 @@
   # System-wide packages
   environment.systemPackages = with pkgs; [
     # Podman stuff
+    podman-compose
     slirp4netns
     redir
 
