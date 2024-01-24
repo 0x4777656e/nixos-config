@@ -91,11 +91,29 @@
       iptables -A INPUT -p tcp --dport 25565 -j ACCEPT
       iptables -A INPUT -p tcp -s localhost --dport 25575 -j ACCEPT
       iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 8112 -j ACCEPT
+      iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 6767 -j ACCEPT
+      iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 7878 -j ACCEPT
+      iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 8989 -j ACCEPT
+      iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 8686 -j ACCEPT
+      iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 9696 -j ACCEPT
+      iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 5055 -j ACCEPT
+      iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 8096 -j ACCEPT
+      iptables -A INPUT -p udp -s 192.168.0.0/16 --dport 7359 -j ACCEPT
+      iptables -A INPUT -p udp -s 192.168.0.0/16 --dport 1900 -j ACCEPT
       iptables -A INPUT -p tcp --dport 25575 -j DROP
     '';
       # Minecraft
       # Minecraft RCON
       # Deluge webconfig
+      # bazarr
+      # radarr
+      # sonarr
+      # lidarr
+      # prowlarr
+      # jellyseerr
+      # jellyfin
+      # jellyfin discovery
+      # jellyfin DNLA
       # DROP all else
 
     # Configure network proxy if necessary
