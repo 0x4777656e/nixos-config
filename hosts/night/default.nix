@@ -90,8 +90,13 @@
     firewall.extraCommands = ''
       iptables -A INPUT -p tcp --dport 25565 -j ACCEPT
       iptables -A INPUT -p tcp -s localhost --dport 25575 -j ACCEPT
+      iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 8112 -j ACCEPT
       iptables -A INPUT -p tcp --dport 25575 -j DROP
     '';
+      # Minecraft
+      # Minecraft RCON
+      # Deluge webconfig
+      # DROP all else
 
     # Configure network proxy if necessary
     #proxy.default = "http://user:password@proxy:port/";
