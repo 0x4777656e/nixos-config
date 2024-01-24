@@ -99,6 +99,7 @@
       iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 8989 -j ACCEPT
       iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 8686 -j ACCEPT
       iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 9696 -j ACCEPT
+      iptables -A INPUT -p udp -s 192.168.0.0/16 --dport 8191 -j ACCEPT
       iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 5055 -j ACCEPT
       iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 8096 -j ACCEPT
       iptables -A INPUT -p udp -s 192.168.0.0/16 --dport 7359 -j ACCEPT
