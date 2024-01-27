@@ -93,6 +93,10 @@
     firewall.extraCommands = ''
       iptables -A INPUT -p tcp --dport 80 -j ACCEPT
       iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+      iptables -A INPUT -p udp --dport 443 -j ACCEPT
+      iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
+      iptables -A INPUT -p tcp --dport 8443 -j ACCEPT
+      iptables -A INPUT -p udp --dport 8443 -j ACCEPT
       iptables -A INPUT -p tcp --dport 25565 -j ACCEPT
       iptables -A INPUT -p tcp -s localhost --dport 25575 -j ACCEPT
       iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 8112 -j ACCEPT
@@ -110,6 +114,10 @@
     '';
       # http
       # https
+      # https/udp
+      # caddy http
+      # caddy https
+      # caddy https/udp
       # Minecraft
       # Minecraft RCON  TODO remove after switching mc to podman-compose
       # Deluge webconfig  TODO remove all but jelly* once caddy is working
