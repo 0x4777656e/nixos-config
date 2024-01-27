@@ -99,7 +99,7 @@
       iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8443
       iptables -A INPUT -p udp --dport 443 -j ACCEPT
       iptables -A INPUT -p udp --dport 8443 -j ACCEPT
-      iptables -t nat -A PREROUTING -p udp --dport 443 -j REDIRECT --to-port 443
+      iptables -t nat -A PREROUTING -p udp --dport 443 -j REDIRECT --to-port 8443
       iptables -A INPUT -p tcp --dport 25565 -j ACCEPT
       iptables -A INPUT -p tcp -s localhost --dport 25575 -j ACCEPT
       iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 8112 -j ACCEPT
