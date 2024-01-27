@@ -102,15 +102,6 @@
       iptables -t nat -A PREROUTING -p udp --dport 443 -j REDIRECT --to-port 8443
       iptables -A INPUT -p tcp --dport 25565 -j ACCEPT
       iptables -A INPUT -p tcp -s localhost --dport 25575 -j ACCEPT
-      iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 8112 -j ACCEPT
-      iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 6767 -j ACCEPT
-      iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 7878 -j ACCEPT
-      iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 8989 -j ACCEPT
-      iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 8686 -j ACCEPT
-      iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 9696 -j ACCEPT
-      iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 8191 -j ACCEPT
-      iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 5055 -j ACCEPT
-      iptables -A INPUT -p tcp -s 192.168.0.0/16 --dport 8096 -j ACCEPT
       iptables -A INPUT -p udp -s 192.168.0.0/16 --dport 7359 -j ACCEPT
       iptables -A INPUT -p udp -s 192.168.0.0/16 --dport 1900 -j ACCEPT
       iptables -A INPUT -p tcp --dport 25575 -j DROP
@@ -126,14 +117,6 @@
       # https/udp redirect
       # Minecraft
       # Minecraft RCON  TODO remove after switching mc to podman-compose
-      # Deluge webconfig  TODO remove all but jelly* once caddy is working
-      # bazarr
-      # radarr
-      # sonarr
-      # lidarr
-      # prowlarr
-      # jellyseerr
-      # jellyfin
       # jellyfin discovery
       # jellyfin DNLA
       # DROP all else
