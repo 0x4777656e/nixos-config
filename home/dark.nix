@@ -63,7 +63,7 @@
     dnsutils
     ldns # replaces dig with drill
     aria2 # command-line download utility
-    socat # replaces netcat
+    socat
     ipcalc # ipv4/6 calculator
 
     # misc.
@@ -149,7 +149,7 @@
       ll = "ls -lAh";
       please = "sudo $(history -p !!)";
       resource = "source ~/.bashrc";
-      nc = "socat";
+      #nc = "socat";
 
       # nix
       nix-sys = "nix-env --profile /nix/var/nix/profiles/system";

@@ -72,6 +72,7 @@
     sysstat
     hyfetch
     ranger
+    netcat-gnu
   ];
 
   # Enable sound with pipewire
