@@ -32,7 +32,18 @@
 
     # intel GPU tools
     intel-gpu-tools
+
+    # SMART monitoring tools
+    smartmontools
   ];
+
+  # Services
+  services.cron = {
+    enable = true;
+    systemCronJobs = [
+      "*/15 * * * * . /etc/profile; /opt/scrutiny/bin/scrutiny-collector-metrics-linux-amd64 run --config /home/dark/containers/scrutiny/config/collector.yaml"
+    ];
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dark = {
@@ -91,6 +102,12 @@
     #firewall.allowedTCPPorts = [ ... ];
     #firewall.allowedUDPPorts = [ ... ];
     firewall.extraCommands = ''
+      iptables -A INPUT -p tcp --dport 53 -j ACCEPT
+      iptables -A INPUT -p tcp --dport 8053 -j ACCEPT
+      iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-port 8053
+      iptables -A INPUT -p udp --dport 53 -j ACCEPT
+      iptables -A INPUT -p udp --dport 8053 -j ACCEPT
+      iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-port 8053
       iptables -A INPUT -p tcp --dport 80 -j ACCEPT
       iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
       iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
@@ -101,11 +118,16 @@
       iptables -A INPUT -p udp --dport 8443 -j ACCEPT
       iptables -t nat -A PREROUTING -p udp --dport 443 -j REDIRECT --to-port 8443
       iptables -A INPUT -p tcp --dport 25565 -j ACCEPT
-      iptables -A INPUT -p tcp -s localhost --dport 25575 -j ACCEPT
+      iptables -A INPUT -p udp --dport 24454 -j ACCEPT
       iptables -A INPUT -p udp -s 192.168.0.0/16 --dport 7359 -j ACCEPT
       iptables -A INPUT -p udp -s 192.168.0.0/16 --dport 1900 -j ACCEPT
-      iptables -A INPUT -p tcp --dport 25575 -j DROP
     '';
+      # dns # removed for experiment || iptables -A INPUT -p tcp --dport 53 -j ACCEPT
+      # pihole dns
+      # dns redirect
+      # dns udp # removed for experiment || iptables -A INPUT -p udp --dport 53 -j ACCEPT
+      # pihole dns udp
+      # dns udp redirect
       # http
       # caddy http
       # http redirect
@@ -116,7 +138,7 @@
       # caddy https/udp
       # https/udp redirect
       # Minecraft
-      # Minecraft RCON  TODO remove after switching mc to podman-compose
+      # Minecraft Modded Voice Chat
       # jellyfin discovery
       # jellyfin DNLA
       # DROP all else

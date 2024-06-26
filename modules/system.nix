@@ -73,6 +73,9 @@
     hyfetch
     ranger
     netcat-gnu
+    btrfs-progs
+    btrbk
+    tmux
   ];
 
   # Enable sound with pipewire
