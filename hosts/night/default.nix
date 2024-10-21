@@ -70,6 +70,7 @@
     ];
     openssh.authorizedKeys.keys = [
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDq5AlWizFRK6H4QsTdaVNehWmjbJDdNYFHl2WFJg94Btn1WLIGr8QnQfQ9B6xrN+1k/2WKwqEZBGZkDdnjNLzb+ab0WrhNCb0va2VnXfL+TAat9+Z0pIfkNAiZK4Exx0foUSMDzAl0yoxFT/1gltuHZgt0uo/WGipmgGdJt4G5t9FodoD49TO7YcWniukroK2IoU47ZVRk67aqS0n8y0o1/x+tPdJsVBvJdRhm4aD5IjMZthhHU4XTI+1WF9etQ7DhBwuIfakJfuuRR5z38NBp2506xudXGRZfE1ySACdhDab/K7s5uAgOoWm/0u213jV4veE5RO/C9rtwRWNe90+KOEb+Y9JoYa+nc6X83jx16AaX+xL3n6ZqJIq+s80H8XTKSlIpEWAGc4S9+2hvpfRxSQCLVHyFY0wkjlTxCvlXT2G1jt2Jtl2ZJCMyAjMXsRMCpg+tfHZsSuiudZ4/3+GBEvaI9tB6pqZZcu0EH9wE+VWhHCfVmfFXvg8v/CCKfg8= flint@steel"
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDN0FsTeVL2Gj1Dy1u8gHcLy7Oor5d4aju0RI1Q9tlFWYFqN05ytkvDa5Eoy6YoPZd+o07WL38yCpIvJ0hzHEzwqD89F48dqBhVnqxU6UAg0nYGf/AwbkFX4lZHya/k9uuOGNX4LlX/RNBam947iXIfUKhkrGFt74kGK4sgrGoSCbcEmGwQ6NVh8X9fhVvo59WIJq+UgKJoKEZpzXwOZnBShmXi45UxdyQAT2aVu67Y2cj+j9U5i0K8kbUUVaeyCnvxnYQsKBsoDAjA/66oYkOlDSthbwUqgJyO9iq4Ey06MnYrOt216UWJ+8SgIBTMAni5IywpeU1wR8iAAop9ZF+tqv9alEatSlwZvKYL/OzVxptZwbAwlxOOvbXPgdeb6IhuQxKLnrajJRCP1ZJG7XyZfyYKrRGORvvoKl9wnumo816ow+ZB0aDwBBQhjUxMmSsMS/G2BHywodhGCD/NoI73afY+d/i7Wr5B0UGoYXuAFKe7lo/ZqVJhPUp1amkcMwc= root@gweniphone"
     ];
   };
 
@@ -117,6 +118,7 @@
       iptables -A INPUT -p udp --dport 443 -j ACCEPT
       iptables -A INPUT -p udp --dport 8443 -j ACCEPT
       iptables -t nat -A PREROUTING -p udp --dport 443 -j REDIRECT --to-port 8443
+      iptables -A INPUT -p udp --dport 2456 -j ACCEPT
       iptables -A INPUT -p tcp --dport 25565 -j ACCEPT
       iptables -A INPUT -p udp --dport 24454 -j ACCEPT
       iptables -A INPUT -p udp -s 192.168.0.0/16 --dport 7359 -j ACCEPT
@@ -137,6 +139,7 @@
       # https/udp
       # caddy https/udp
       # https/udp redirect
+      # Valheim
       # Minecraft
       # Minecraft Modded Voice Chat
       # jellyfin discovery
